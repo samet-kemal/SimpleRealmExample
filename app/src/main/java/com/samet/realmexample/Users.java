@@ -8,49 +8,49 @@ import io.realm.annotations.RealmClass;
 public class Users extends RealmObject {
 
     private String userName;
-    private String userSurName;
-    private Integer userSalary;
-    private Integer userAge;
+    private String userRealName;
+    private String userGender;
+    private String userPassword;
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public void setUserSurName(String userSurName) {
-        this.userSurName = userSurName;
+    public void setUserRealName(String userRealName) {
+        this.userRealName = userRealName;
     }
 
-    public void setUserSalary(Integer userSalary) {
-        this.userSalary = userSalary;
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 
-    public void setUserAge(Integer userAge) {
-        this.userAge = userAge;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public String getUserSurName() {
-        return userSurName;
+    public String getUserRealName() {
+        return userRealName;
     }
 
-    public Integer getUserSalary() {
-        return userSalary;
+    public String getUserGender() {
+        return userGender;
     }
 
-    public Integer getUserAge() {
-        return userAge;
+    public String getUserPassword() {
+        return userPassword;
     }
 
     @Override
     public String toString() {
         return "Users{" +
                 "userName='" + userName + '\'' +
-                ", userSurName='" + userSurName + '\'' +
-                ", userSalary=" + userSalary +
-                ", userAge=" + userAge +
+                ", userRealName='" + userRealName + '\'' +
+                ", userGender='" + userGender + '\'' +
+                ", userPassword='" + userPassword + '\'' +
                 '}';
     }
 }

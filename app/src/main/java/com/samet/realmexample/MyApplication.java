@@ -10,7 +10,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().name("myrealmexample.realm").build();
+        RealmConfiguration config = new RealmConfiguration.Builder().name("myNewrealmexample.realm").build();
         Realm.setDefaultConfiguration(config);
 
     }
