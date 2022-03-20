@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Casper/AndroidStudioProjects/RealmExample/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Casper/AndroidStudioProjects/RealmExample/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Casper/AndroidStudioProjects/RealmExample/app/src/main/res/layout/alert_layout.xml" value="0.1" />
         <entry key="..\:/Users/Casper/AndroidStudioProjects/RealmExample/app/src/main/res/layout/list_view_layout.xml" value="0.1" />
       </map>
     </option>

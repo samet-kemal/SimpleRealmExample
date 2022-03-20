@@ -10,8 +10,9 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().name("myNewrealmexample.realm").build();
+        RealmConfiguration config = new RealmConfiguration.Builder().allowWritesOnUiThread(true).name("myNewrealmexample.realm").build();
         Realm.setDefaultConfiguration(config);
+
 
     }
 }

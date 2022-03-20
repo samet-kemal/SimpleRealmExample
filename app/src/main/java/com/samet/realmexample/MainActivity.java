@@ -1,10 +1,12 @@
 package com.samet.realmexample;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Delete(i);
+                GiveAlert(i);
 
             }
         });
@@ -138,6 +140,46 @@ public class MainActivity extends AppCompatActivity {
     public void Delete(int position){
 
         RealmResults<Users> userToDelete = realm.where(Users.class).findAll();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Users userDelete = userToDelete.get(position);
+                if (userDelete != null) {
+                    userDelete.deleteFromRealm();
+
+                }
+                ShowRealm();
+            }
+        });
+
+    }
+
+    public void GiveAlert(int position){
+        LayoutInflater infilater = getLayoutInflater();
+        View view = infilater.inflate(R.layout.alert_layout,null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        Button yesButton=(Button) view.findViewById(R.id.yesButton);
+        Button noButton=(Button) view.findViewById(R.id.noButton);
+
+        alert.setView(view);
+        alert.setCancelable(false);
+
+        AlertDialog dialog=alert.create();
+        dialog.show();
+
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Delete(position);
+            }
+        });
+
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
 
 
     }
