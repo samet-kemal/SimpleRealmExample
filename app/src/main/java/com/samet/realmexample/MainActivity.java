@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     Button registerButton;
     RadioGroup genderRadioGroup;
     ListView listView;
+    Button updateButton;
+    int position=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         userPassword=(EditText)findViewById(R.id.passwordEditText);
         registerButton=(Button) findViewById(R.id.registerButton);
         genderRadioGroup=(RadioGroup) findViewById(R.id.GenderRadioGroup);
+        updateButton =(Button) findViewById(R.id.updateButton);
 
 
     }
@@ -75,6 +79,32 @@ public class MainActivity extends AppCompatActivity {
                 userRealName.setText("");
                 userPassword.setText("");
                 ShowRealm();
+            }
+        });
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RealmResults<Users> list= realm.where(Users.class).findAll();
+                Users userToUpdate = list.get(position);
+                String name=userName.getText().toString();
+                String realname=userRealName.getText().toString();
+                String password =userPassword.getText().toString();
+                int id=genderRadioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) findViewById(id);
+                String gender= radioButton.getText().toString();
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        userToUpdate.setUserName(name);
+                        userToUpdate.setUserRealName(realname);
+                        userToUpdate.setUserPassword(password);
+                        userToUpdate.setUserGender(gender);
+                    }
+                });
+
+                ShowRealm();
+
             }
         });
 
@@ -127,10 +157,26 @@ public class MainActivity extends AppCompatActivity {
     public void PositionFind(){
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            RealmResults<Users> list = realm.where(Users.class).findAll();
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 GiveAlert(i);
+                userName.setText(list.get(i).getUserName());
+                userRealName.setText(list.get(i).getUserRealName());
+                userPassword.setText(list.get(i).getUserPassword());
+                userName.setText(list.get(i).getUserName());
+                if (list.get(i).getUserGender().equals("Male")){
+
+                    ((RadioButton)genderRadioGroup.getChildAt(0)).setChecked(true);
+
+                }else {
+                    ((RadioButton)genderRadioGroup.getChildAt(1)).setChecked(true);
+                }
+
+                position=i;
+
 
             }
         });

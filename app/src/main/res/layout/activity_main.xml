@@ -9,11 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="2"
+        android:weightSum="3"
         android:orientation="vertical">
         <LinearLayout
             android:layout_marginTop="1sp"
-            android:layout_weight="1"
+            android:layout_weight="1.20"
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,6 +21,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonLinear"
+
+
             >
 
             <EditText
@@ -42,7 +45,10 @@
             <RadioGroup
                 android:id="@+id/GenderRadioGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/linear"
+
+                >
                 <RadioButton
                     android:id="@+id/GenderMaleRadio"
                     android:layout_width="wrap_content"
@@ -73,35 +79,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/buttonLinear"
+            android:layout_weight="0.4"
             app:layout_constraintTop_toBottomOf="@id/linear"
-            app:layout_constraintBottom_toTopOf="parent"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/registerButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Register"
-                app:layout_constraintBottom_toTopOf="@id/listView"
-                app:layout_constraintTop_toBottomOf="@id/linear"
-                >
+            app:layout_constraintBottom_toTopOf="@id/listView"
+            android:orientation="horizontal">
 
-            </Button>
+                <Button
+                    android:id="@+id/registerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
 
-            <ListView
-                android:id="@+id/listView"
-                android:clickable="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/registerButton"
+                    >
 
-                >
+                </Button>
+                <Button
+                    android:id="@+id/updateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
 
-            </ListView>
+                    >
+
+                </Button>
 
 
         </LinearLayout>
+        <ListView
+            android:id="@+id/listView"
+            android:clickable="true"
+            android:layout_weight="1.40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonLinear"
+            >
+        </ListView>
+
     </LinearLayout>
 
 
